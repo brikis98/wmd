@@ -4,23 +4,35 @@ WMD: The Wysiwym Markdown Editor
 Introduction
 ------------
 
-**Note:** I have not yet begun work on this project.
-
 WMD is a JavaScript based code editor for the [Markdown](http://daringfireball.net/projects/markdown/) formatting language.  It includes a Markdown interpreter – Showdown – for live preview and output of the Markdown generated HTML.
 
-The goal of this project is to add support for simple input elements and forms to Markdown. This code is forked from the [ChiperSoft fork](https://github.com/ChiperSoft/wmd) of WMD, which, in turn, was forked from a number of other sources. All credit goes to the respective authors.
+The goal of this project is to add support for simple input elements and forms to Markdown. This code is forked from [Jim Brikman's fork](https://github.com/brikis98/wmd) of WMD, which, in turn, was forked from a number of other sources. All credit goes to the respective authors.
+
+I (maleldil) forked this from brikis98 to play around and see how difficult it would be to add the functionality he has defined here.  All the documentation provided is his, and all credit for the ideas are his as well.
 
 Major Changes from ChiperSoft Library Revision
 -------------
 
 ### Text fields
 
-    name = ________
+    name = ___
 
 ```html
 <label for="name">Name:</label> 
-<input type="text" id="name" name="name"/>
+<input type="text" id="name" name="name" size="20"/>
 ```
+
+Or:
+
+    name = ___[50]
+	
+```html
+<label for="name">Name:</label> 
+<input type="text" id="name" name="name" size="50"/>
+```
+
+Exactly 3 underscores will be matched.  Any more will be handled as standard underline directives.  Default input size is 20.
+
 
 ### Radio buttons
 
@@ -56,14 +68,48 @@ Major Changes from ChiperSoft Library Revision
 </select>
 ```
 
+Or with user-friendly labels:
+
+    city = {BOS -> Boston, SFO -> San Francisco, (NYC -> New York City)}
+
+```html
+<label for="city">City:</label>
+<select id="city" name="city">
+  <option value="BOS">Boston</option>
+  <option value="SFO">San Francisco</option>
+  <option value="NYC" selected="selected">New York City</option>
+</select>
+```
+
+Or both:
+
+    city = {BOS, SFO, (NYC -> New York City)}
+	
+```html
+<label for="city">City:</label>
+<select id="city" name="city">
+  <option value="BOS">BOS</option>
+  <option value="SFO">SFO</option>
+  <option value="NYC" selected="selected">New York City</option>
+</select>
+```
+
 ### Required fields
 
-    zip code* = ________
+    zip code* = ___
 
 ```html
 <label for="zip-code" class="required-label">Zip code*:</label>
-<input type="text" name="zip-code" id="zip-code" class="required-input"/>
+<input type="text" name="zip-code" id="zip-code" size="20" class="required-input"/>
 ```
+
+    zip code* = ___[50]
+
+```html
+<label for="zip-code" class="required-label">Zip code*:</label>
+<input type="text" name="zip-code" id="zip-code" size="50" class="required-input"/>
+```
+
 
 How to use
 ----------
@@ -99,7 +145,7 @@ How to use
 Status
 -------
 
-The new form elements have not yet been implemented.
+All documented features have been implemented and tested with basic use cases.  It could use more thorough testing, though.
 
 License
 -------
